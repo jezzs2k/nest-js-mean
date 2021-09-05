@@ -7,9 +7,10 @@ import { Configuration } from './shared/configuration/configguration.enum';
 import { ConfigurationService } from './shared/configuration/configuration.service';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
-  imports: [SharedModule, MongooseModule.forRoot(ConfigurationService.connectionString), UserModule],
+  imports: [SharedModule, MongooseModule.forRoot(ConfigurationService.connectionString), UserModule, TodoModule],
   controllers: [AppController],
   providers: [AppService],
 })

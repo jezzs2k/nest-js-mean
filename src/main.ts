@@ -12,7 +12,7 @@ async function bootstrap() {
   const swaggerOptions = new DocumentBuilder()
     .setTitle('Nest MEAN')
     .setDescription('API Documentation')
-    .addBearerAuth({ bearerFormat: 'Authorization', type: 'http' }, 'header')
+    .addBearerAuth()
     .setVersion('1.0.0')
     .build();
 
@@ -38,7 +38,7 @@ async function bootstrap() {
   }
 
   // app.setGlobalPrefix('api');
-  app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(AppModule.port);
 }

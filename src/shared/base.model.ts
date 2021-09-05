@@ -1,7 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { SchemaOptions } from 'mongoose';
-import { Typegoose, prop } from 'typegoose';
-export class BaseModel extends Typegoose {
+import { Typegoose, prop, pre } from 'typegoose';
+
+@pre('findOneAndUpdate', function (next) {
+    this._update.updatedAt = new Date(Date.now());
+
+    next();
+})
+export class BaseModel<T> extends Typegoose {
     @prop({ default: Date.now() })
     createdAt?: Date;
 
@@ -28,7 +34,7 @@ export class BaseModelVm {
     id?: string;
 };
 
-export const schemaOption: SchemaOptions = {
+export const schemaOptions: SchemaOptions = {
     toJSON: {
         virtuals: true,
         getters: true,
