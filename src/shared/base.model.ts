@@ -1,9 +1,14 @@
-import { Document, SchemaOptions } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-
-export interface BaseModel extends Document {
+import { SchemaOptions } from 'mongoose';
+import { Typegoose, prop } from 'typegoose';
+export class BaseModel extends Typegoose {
+    @prop({ default: Date.now() })
     createdAt?: Date;
+
+    @prop({ default: Date.now() })
     updatedAr?: Date;
+
+    id?: string;
 };
 
 export class BaseModelVm {
