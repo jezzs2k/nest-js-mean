@@ -1,13 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  const hostDomain = AppModule.isDev ? `${AppModule.host}:${AppModule.port}` : AppModule.host;
+  const hostDomain = AppModule.isDev
+    ? `${AppModule.host}:${AppModule.port}`
+    : AppModule.host;
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('Nest MEAN')
@@ -29,8 +31,8 @@ async function bootstrap() {
       filter: true,
       docExpansion: 'list',
       showRequiestDuration: true,
-    }
-  })
+    },
+  });
 
   if (module.hot) {
     module.hot.accept();

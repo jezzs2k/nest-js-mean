@@ -19,11 +19,11 @@ export class AuthService {
         private readonly _configurationService: ConfigurationService
     ) {
         this.jwtOption = { expiresIn: '12h' };
-        this.jwtKey = _configurationService.get(Configuration.JWT_KEY);
+        // this.jwtKey = _configurationService.get(Configuration.JWT_KEY);
     }
 
     async signPayload(payload: JwtPayload): Promise<string> {
-        return sign(payload, this.jwtKey, this.jwtOption);
+        return sign(payload, 'MYsercretKey2021', this.jwtOption);
     }
 
     async validatePayload(payload: JwtPayload): Promise<InstanceType<User>> {

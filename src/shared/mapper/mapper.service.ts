@@ -20,5 +20,9 @@ export class MapperService {
 
         config.createMap('Todo', 'TodoVm').forSourceMember('_id', opts => opts.ignore());
         config.createMap('Todo[]', 'TodoVm[]').forSourceMember('_id', opts => opts.ignore());
+
+        config
+          .createMap('News[]', 'NewsVm[]')
+          .forSourceMember('_id', (otps) => otps.ignore());
     }
 }

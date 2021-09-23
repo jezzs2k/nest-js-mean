@@ -11,9 +11,9 @@ import { JwtPayload } from '../jwt.payload';
 export class JwtStrategyService extends PassportStrategy(Strategy) {
     constructor(private readonly _authService: AuthService, private readonly _configurationService: ConfigurationService) {
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: _configurationService.get(Configuration.JWT_KEY),
-        })
+          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+          secretOrKey: 'MYsercretKey2021',
+        });
     }
 
     async validate(payload: JwtPayload, done: VerifiedCallback) {
